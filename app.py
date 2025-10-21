@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime
 import numpy as np
 
-df = pd.read_excel("../data/KRX_sector_mktcap.xlsx")
+df = pd.read_excel("data/KRX_sector_mktcap.xlsx")
 
 # DATE 컬럼 datetime으로 변환
 df['DATE'] = df['DATE'].astype(str)
@@ -12,21 +12,8 @@ df['DATE'] = pd.to_datetime(df['DATE'], format='%Y%m%d', errors='coerce')
 # --- 상단 고정: 제목 ---
 st.title("업종별 시가총액 분석 앱")
 
-st.set_page_config(layout="wide")
-st.markdown("""
-<style>
-    .block-container {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        padding-left: 10rem;
-        padding-right: 10rem;
-        max-width: 95%; /* 가로폭 확장 */
-    }
-</style>
-""", unsafe_allow_html=True)
-
 # --- 상단 고정: 기간 필터 ---
-col1, col2, col3 = st.columns([2,2,2])
+col1, col2 = st.columns(2)
 
 with col1:
     period_unit = st.selectbox(
